@@ -10,7 +10,7 @@ const addresses = {
 //First address of this mnemonic must have enough BNB to pay for tx fess
 const mnemonic = 'your mnemonic here, to send';
 
-const provider = new ethers.providers.WebSocketProvider('Ankr websocket url to mainnet');
+const provider = new ethers.providers.WebSocketProvider('https://rpc.ankr.com/bsc');
 const wallet = ethers.Wallet.fromMnemonic(mnemonic);
 const account = wallet.connect(provider);
 const factory = new ethers.Contract(
