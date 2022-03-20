@@ -4,7 +4,7 @@ const addresses = {
   WBNB: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
   factory: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',
   router: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
-  recipient: 'recipient of the profit here'
+  recipient: '0x19880530CEAb97F95C67D3794678E4Bc3e0e5280'
 }
 
 //First address of this mnemonic must have enough BNB to pay for tx fess
@@ -38,7 +38,7 @@ const wbnb = new ethers.Contract(
 const init = async () => {
   const tx = await wbnb.approve(
     router.address, 
-    'replace by amount covering several trades'
+    '1000000000000000000'
   );
   const receipt = await tx.wait(); 
   console.log('Transaction receipt');
@@ -74,7 +74,7 @@ factory.on('PairCreated', async (token0, token1, pairAddress) => {
   //We buy for 0.1 BNB of the new token
   //ethers was originally created for Ethereum, both also work for BSC
   //'ether' === 'bnb' on BSC
-  const amountIn = ethers.utils.parseUnits('0.1', 'ether');
+  const amountIn = ethers.utils.parseUnits('0.001', 'ether');
   const amounts = await router.getAmountsOut(amountIn, [tokenIn, tokenOut]);
   //Our execution price will be a bit different, we need some flexbility
   const amountOutMin = amounts[1].sub(amounts[1].div(10));
